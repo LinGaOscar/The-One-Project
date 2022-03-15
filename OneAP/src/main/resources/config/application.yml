@@ -8,7 +8,7 @@ spring:
     hibernate:
       ddl-auto: update
   datasource:
-    url: jdbc:mariadb://localhost:3307/the_one
+    url: jdbc:mariadb://localhost:3307/the_one_project
     username: root
     password: "07310731"
     driver-class-name: org.mariadb.jdbc.Driver

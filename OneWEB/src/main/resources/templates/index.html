@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>The - One - Project</title>
+
+    <script type="text/javascript" th:src="@{static/js/jquery-3.6.0.min.js}" src="../static/js/jquery-3.6.0.min.js"></script>
+
+</head>
+<body>
+<script>
+    $.get('http://localhost:8080/api/getAllUser').done(resp => {
+        console.log(resp);
+    }).fail(resp => {
+        console.log(resp);
+    });
+</script>
+</body>
+</html>
