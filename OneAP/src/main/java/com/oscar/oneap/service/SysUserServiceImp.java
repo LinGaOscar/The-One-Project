@@ -34,6 +34,12 @@ public class SysUserServiceImp implements SysUserService {
 
     @Override
     public void deleteUser(long id) {
-        sysUserRepository.deleteById(id);
+        
     }
+
+    @Override
+    public SysUser findById(long id) {
+        return sysUserRepository.findById(id).orElse(null);
+    }
+
 }
