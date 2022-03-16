@@ -5,11 +5,14 @@
     <title>The - One - Project</title>
 
     <script type="text/javascript" th:src="@{static/js/jquery-3.6.0.min.js}" src="../static/js/jquery-3.6.0.min.js"></script>
-
+    <link rel="stylesheet" th:href="@{static/css/bootstrap.min.css}" href="../static/css/bootstrap.min.css"/>
+    <link rel="stylesheet" th:href="@{static/css/font-awesome.min.css}" href="../static/css/font-awesome.min.css"/>
+    <script type="text/javascript" th:src="@{static/js/bootstrap.bundle.min.js}"
+            src="../static/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
 <script>
-    $.get('http://localhost:8080/api/getAllUser').done(resp => {
+    $.get('http://localhost:8080/api/user/getAllUser').done(resp => {
         console.log(resp);
     }).fail(resp => {
         console.log(resp);

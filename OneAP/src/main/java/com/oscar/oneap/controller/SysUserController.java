@@ -12,8 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.List;
 
 @Controller
-@CrossOrigin()
-@RequestMapping("/api")
+@RequestMapping("/user")
 public class SysUserController {
     private SysUserServiceImp sysUserServiceImp;
 
