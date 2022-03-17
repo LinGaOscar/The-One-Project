@@ -1,5 +1,7 @@
 package com.oscar.oneap.jpatest;
 
+import java.util.Date;
+
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +30,18 @@ public class SysUserTest {
 	public void add() {
 
 //		SysUserRoles sysUserRoles = new SysUserRoles();
-		SysUser sysUser = new SysUser();
-		
+//		SysUser sysUser = new SysUser();
+//		sysUser.setAccount("21053060");
+//		sysUser.setPassword("0000");
+//		sysUser.setUserName("Luka");
+//		sysUser.setCreatedDatetime(new Date());
+//		sysUserRepository.save(sysUser);
+	}
 
+	@Test
+	public void show() {
+
+//		System.out.println(sysUserRepository.findAll());
+		System.out.println(sysUserRepository.findByAccount("21053064").getUserName());
 	}
 }
