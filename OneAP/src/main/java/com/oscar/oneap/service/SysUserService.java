@@ -15,4 +15,6 @@ public interface SysUserService {
     void deleteUser(long id);
 
     SysUser findById(long id);
+
+    SysUser findByAccount(String account);
 }

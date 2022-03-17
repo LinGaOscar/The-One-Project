@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.List;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/users")
 public class SysUserController {
     private SysUserServiceImp sysUserServiceImp;
 
@@ -27,10 +27,10 @@ public class SysUserController {
     public List<SysUser> getAllUser() {
         return sysUserServiceImp.findAll();
     }
-    @GetMapping("/getUser/{id}")
-    @ResponseBody
-    public SysUser getUser(@PathVariable("id") Long id) {
 
-        return sysUserServiceImp.findById(id);
+    @GetMapping("/getUser/{account}")
+    @ResponseBody
+    public SysUser getUser(@PathVariable("account") String account) {
+        return sysUserServiceImp.findByAccount(account);
     }
 }

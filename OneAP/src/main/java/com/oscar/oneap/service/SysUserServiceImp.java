@@ -42,4 +42,9 @@ public class SysUserServiceImp implements SysUserService {
         return sysUserRepository.findById(id).orElse(null);
     }
 
+    @Override
+    public SysUser findByAccount(String account) {
+        return sysUserRepository.findByAccount(account);
+    }
+
 }
