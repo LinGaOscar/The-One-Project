@@ -1,14 +1,17 @@
 package com.oscar.oneap.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+
+import java.util.Date;
+
+import javax.persistence.*;
+
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 
-import javax.persistence.*;
-import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Data
 @Entity

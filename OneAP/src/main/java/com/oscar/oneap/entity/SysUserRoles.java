@@ -21,4 +21,5 @@ public class SysUserRoles {
 	
 	@Column(name = "roles")
 	private String roles;
+
 }
