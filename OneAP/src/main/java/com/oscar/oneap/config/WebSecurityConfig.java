@@ -7,18 +7,16 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.oscar.oneap.auth.AccessDeniedHandlerImpl;
 import com.oscar.oneap.auth.EntryPointImpl;
+import com.oscar.oneap.auth.FailureHandlerImpl;
+import com.oscar.oneap.auth.LoginAuthenticationFilter;
+import com.oscar.oneap.auth.SuccessHandlerImpl;
 
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -36,6 +34,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.exceptionHandling().authenticationEntryPoint(new EntryPointImpl())
 				.accessDeniedHandler(new AccessDeniedHandlerImpl())
 				.and()
+				.addFilterAt(loginAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
 				.authorizeRequests().antMatchers("/admin/**").hasRole("ADMIN")
 				.antMatchers("/user/**").hasAnyRole("ADMIN", "USER")
 				.antMatchers("/").permitAll()
@@ -56,7 +55,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.and()
 				.csrf().disable();
 	}
-
+	 @Bean
+     LoginAuthenticationFilter loginAuthenticationFilter() throws Exception {
+         LoginAuthenticationFilter filter = new LoginAuthenticationFilter();
+         filter.setAuthenticationManager(authenticationManagerBean());
+         filter.setAuthenticationSuccessHandler(new SuccessHandlerImpl());
+         filter.setAuthenticationFailureHandler(new FailureHandlerImpl());
+         filter.setFilterProcessesUrl("/api/login");
+         return filter;
+     }
 	@Override
 	@Bean
 	public AuthenticationManager authenticationManagerBean() throws Exception {
