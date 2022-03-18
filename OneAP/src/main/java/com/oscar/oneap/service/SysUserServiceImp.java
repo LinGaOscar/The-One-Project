@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import com.oscar.oneap.repository.SysUserRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SysUserServiceImp implements SysUserService {
@@ -34,7 +35,10 @@ public class SysUserServiceImp implements SysUserService {
 
     @Override
     public void deleteUser(long id) {
-        
+        SysUser sysUser = new SysUser();
+        sysUser.setId(id);
+        sysUser.setActive(false);
+        sysUserRepository.save(sysUser);
     }
 
     @Override
@@ -43,8 +47,12 @@ public class SysUserServiceImp implements SysUserService {
     }
 
     @Override
+    public SysUser findByUserName(String username) {
+        return sysUserRepository.findByUserName(username);
+    }
+
+    @Override
     public SysUser findByAccount(String account) {
         return sysUserRepository.findByAccount(account);
     }
-
 }

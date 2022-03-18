@@ -13,6 +13,7 @@ import java.util.Date;
 
 @Data
 @Entity
+@Table(name = "sys_user_roles")
 public class SysUserRoles {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

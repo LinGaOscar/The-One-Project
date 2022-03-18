@@ -3,34 +3,35 @@ package com.oscar.oneap.config;
 import java.io.PrintWriter;
 import java.util.Map;
 
+import com.oscar.oneap.auth.*;
 import com.oscar.oneap.repository.SysUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.oscar.oneap.auth.AccessDeniedHandlerImpl;
-import com.oscar.oneap.auth.EntryPointImpl;
-import com.oscar.oneap.auth.FailureHandlerImpl;
-import com.oscar.oneap.auth.SuccessHandlerImpl;
 
 import javax.sql.DataSource;
 
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    DataSource dataSource;
+    SysUserDetailsServiceImpl sysUserDetailsService;
 
     @Autowired
-    public void autoWired(DataSource dataSource) {
-        this.dataSource = dataSource;
+    public void autoWired(SysUserDetailsServiceImpl sysUserDetailsService) {
+        this.sysUserDetailsService = sysUserDetailsService;
     }
 
     @Bean
@@ -40,17 +41,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.jdbcAuthentication()
-//                .dataSource(dataSource)
-//                .withDefaultSchema()
-//                .withUser(User.withUsername("user").password("pass").roles("USER"))
-//                .withUser(User.withUsername("admin").password("pass").roles("ADMIN"));
+        auth.userDetailsService(sysUserDetailsService);
 
 
-        auth.inMemoryAuthentication()
-                .withUser("admin").password("123").roles("ADMIN", "USER")
-                .and()
-                .withUser("user").password("123").roles("USER");
+//        auth.inMemoryAuthentication()
+//                .withUser("admin").password("123").roles("ADMIN", "USER")
+//                .and()
+//                .withUser("user").password("123").roles("USER");
     }
 
     @Override
@@ -64,8 +61,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/user/**").hasAnyRole("ADMIN", "USER")
                 .antMatchers("/").permitAll()
                 .and()
-                .formLogin()
-                .and()
+                .formLogin().and()
                 .logout()
                 .logoutUrl("/logout")
                 .invalidateHttpSession(true)

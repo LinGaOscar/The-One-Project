@@ -31,10 +31,11 @@ public class SysUser {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "memo")
-    private String memo;
+    @Column(name = "active")
+    private boolean active;
 
-    @ManyToOne(fetch = FetchType.LAZY,cascade=CascadeType.MERGE)
+    @ManyToOne
+    @OrderBy("id")
     SysUserRoles sysUserRoles;
 
 //    @CreatedBy
