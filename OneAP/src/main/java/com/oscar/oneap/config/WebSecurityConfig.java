@@ -52,8 +52,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
-                .exceptionHandling()
+        http.exceptionHandling()
 //                .authenticationEntryPoint(new EntryPointImpl())
                 .accessDeniedHandler(new AccessDeniedHandlerImpl())
                 .and()
@@ -61,7 +60,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/user/**").hasAnyRole("ADMIN", "USER")
                 .antMatchers("/").permitAll()
                 .and()
-                .formLogin().and()
+                .formLogin()
+//                .loginProcessingUrl("/login")
+//                .usernameParameter("account")
+//                .passwordParameter("password")
+//                .successHandler( new SuccessHandlerImpl() )
+//                .failureHandler( new FailureHandlerImpl() )
+                .and()
                 .logout()
                 .logoutUrl("/logout")
                 .invalidateHttpSession(true)
