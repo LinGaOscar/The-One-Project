@@ -37,23 +37,23 @@ public class SysUser {
     @ManyToOne(fetch = FetchType.LAZY,cascade=CascadeType.MERGE)
     SysUserRoles sysUserRoles;
 
-    @CreatedBy
-    @Column(name = "created_user")
-    private String createdUser;
-
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8", locale = "zh_TW")
-    @CreatedDate
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "created_datetime")
-    private Date createdDatetime;
-
-    @LastModifiedBy
-    @Column(name = "update_user")
-    private String updateUser;
-
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8", locale = "zh_TW")
-    @LastModifiedDate
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "updated_datetime")
-    private Date updatedDatetime;
+//    @CreatedBy
+//    @Column(name = "created_user")
+//    private String createdUser;
+//
+//    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8", locale = "zh_TW")
+//    @CreatedDate
+//    @Temporal(TemporalType.TIMESTAMP)
+//    @Column(name = "created_datetime")
+//    private Date createdDatetime;
+//
+//    @LastModifiedBy
+//    @Column(name = "update_user")
+//    private String updateUser;
+//
+//    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8", locale = "zh_TW")
+//    @LastModifiedDate
+//    @Temporal(TemporalType.TIMESTAMP)
+//    @Column(name = "updated_datetime")
+//    private Date updatedDatetime;
 }

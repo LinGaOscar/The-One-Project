@@ -1,28 +1,30 @@
 package com.oscar.oneap.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+
+import java.util.Date;
 
 @Data
 @Entity
 public class SysUserRoles {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
-	private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
 
-	@Column(name = "rank")
-	private String rank;
+    @Column(name = "rank")
+    private String rank;
 
-	@Column(name = "function")
-	private String function;
-	
-	@Column(name = "roles")
-	private String roles;
+    @Column(name = "functions")
+    private String functions;
 
+    @Column(name = "roles")
+    private String roles;
 }
