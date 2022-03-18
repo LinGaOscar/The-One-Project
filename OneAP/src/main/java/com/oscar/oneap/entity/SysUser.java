@@ -34,6 +34,9 @@ public class SysUser {
     @Column(name = "memo")
     private String memo;
 
+    @ManyToOne(fetch = FetchType.LAZY,cascade=CascadeType.MERGE)
+    SysUserRoles sysUserRoles;
+
     @CreatedBy
     @Column(name = "created_user")
     private String createdUser;

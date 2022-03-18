@@ -2,6 +2,7 @@ package com.oscar.oneap.auth;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -20,7 +21,9 @@ public class FailureHandlerImpl implements AuthenticationFailureHandler {
 		httpServletResponse.setContentType("application/json;charset=UTF-8");
 		PrintWriter out = httpServletResponse.getWriter();
 		httpServletResponse.setStatus(404);
-		Map<String, String> result = Map.of("message", "登入失敗");
+		Map<String, String> result = new HashMap<>();
+		result.put("message","登入失敗");
+		result.put("mes2",httpServletRequest.getInputStream().toString());
 		ObjectMapper om = new ObjectMapper();
 		out.write(om.writeValueAsString(result));
 		out.flush();

@@ -16,8 +16,11 @@ public class SysUserRoles {
 	@Column(name = "id")
 	private Long id;
 
-	@Column(name = "account")
-	private String account;
+	@Column(name = "rank")
+	private String rank;
+
+	@Column(name = "function")
+	private String function;
 	
 	@Column(name = "roles")
 	private String roles;

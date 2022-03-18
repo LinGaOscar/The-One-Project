@@ -2,6 +2,7 @@ package com.oscar.oneap.auth;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -15,18 +16,20 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class EntryPointImpl implements AuthenticationEntryPoint {
 
-	@Override
-	public void commence(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse,
-			AuthenticationException e) throws IOException, ServletException {
-		ObjectMapper mapper = new ObjectMapper();
-		Map<String, String> map = Map.of("error", "請先登入才能進行此操作");
-		String error = mapper.writeValueAsString(map);
-		httpServletResponse.setContentType("application/json;charset=UTF-8");
-		httpServletResponse.setCharacterEncoding("UTF-8");
-		httpServletResponse.setStatus(httpServletResponse.SC_UNAUTHORIZED);
-		PrintWriter writer = httpServletResponse.getWriter();
-		writer.write(error);
-		writer.flush();
-		writer.close();
-	}
+    @Override
+    public void commence(HttpServletRequest request, HttpServletResponse response,
+                         AuthenticationException e) throws IOException, ServletException {
+        ObjectMapper mapper = new ObjectMapper();
+        Map<String, String> result = new HashMap<>();
+        result.put("error", "請先登入才能進行此操作");
+
+        response.setContentType("application/json;charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        response.setStatus(response.SC_UNAUTHORIZED);
+
+        PrintWriter out = response.getWriter();
+        out.write(mapper.writeValueAsString(result));
+        out.flush();
+        out.close();
+    }
 }
