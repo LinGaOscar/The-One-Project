@@ -53,20 +53,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.exceptionHandling()
-//                .authenticationEntryPoint(new EntryPointImpl())
+                .authenticationEntryPoint(new EntryPointImpl())
                 .accessDeniedHandler(new AccessDeniedHandlerImpl())
                 .and()
+                .addFilterBefore(loginAuthenticationFilter(),UsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests().antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers("/user/**").hasAnyRole("ADMIN", "USER")
                 .antMatchers("/").permitAll()
                 .and()
-                .formLogin()
+//                .formLogin()
 //                .loginProcessingUrl("/login")
 //                .usernameParameter("account")
 //                .passwordParameter("password")
 //                .successHandler( new SuccessHandlerImpl() )
 //                .failureHandler( new FailureHandlerImpl() )
-                .and()
+//                .and()
                 .logout()
                 .logoutUrl("/logout")
                 .invalidateHttpSession(true)
@@ -82,5 +83,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 })
                 .and()
                 .csrf().disable();
+    }
+
+    @Bean
+    LoginAuthenticationFilter loginAuthenticationFilter() throws Exception {
+        LoginAuthenticationFilter filter = new LoginAuthenticationFilter();
+        filter.setAuthenticationManager(authenticationManagerBean());
+        filter.setAuthenticationSuccessHandler(new SuccessHandlerImpl());
+        filter.setAuthenticationFailureHandler(new FailureHandlerImpl());
+        filter.setFilterProcessesUrl("/login");
+        return filter;
+    }
+
+    @Override
+    @Bean
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
     }
 }
