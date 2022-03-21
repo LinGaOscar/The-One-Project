@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,7 +26,12 @@ public class SysUserController {
 
     @GetMapping("/getAllUser")
     @ResponseBody
-    public List<SysUser> getAllUser() {
+    public List<SysUser> getAllUser(HttpServletRequest request) {
+        System.out.println(request.getCookies());
+        System.out.println(request.getSession());
+        System.out.println(request.getUserPrincipal());
         return sysUserServiceImp.findAll();
+
+
     }
 }

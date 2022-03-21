@@ -35,23 +35,5 @@ public class LoginAuthenticationFilter extends UsernamePasswordAuthenticationFil
             setDetails(request, authRequest);
             return this.getAuthenticationManager().authenticate(authRequest);
         }
-
-//            ObjectMapper mapper = new ObjectMapper();
-//            UsernamePasswordAuthenticationToken authRequest = null;
-//            try {
-//                System.out.println();
-//                System.out.println(request.getParameterMap());
-//                System.out.println();
-//                Map<String, String> body = mapper.readValue(request.getInputStream(), Map.class);
-//                 authRequest = new UsernamePasswordAuthenticationToken(
-//                        body.get("account"), body.get("password")
-//                );
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//                authRequest = new UsernamePasswordAuthenticationToken("", "");
-//            } finally {
-//                setDetails(request, authRequest);
-//                return this.getAuthenticationManager().authenticate(authRequest);
-//            }
     }
 }
