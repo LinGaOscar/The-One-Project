@@ -29,7 +29,7 @@ public class SysUserDetails implements UserDetails {
         this.account = sysUser.getAccount();
         this.authorities = Arrays.stream(sysUser.getSysUserRoles().getRoles().split(","))
                 .map(SimpleGrantedAuthority::new).collect(Collectors.toList());
-        System.out.println(authorities);
+//        System.out.println(authorities);
     }
 
     @Override

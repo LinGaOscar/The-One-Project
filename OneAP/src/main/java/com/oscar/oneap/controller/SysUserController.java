@@ -27,8 +27,10 @@ public class SysUserController {
     @GetMapping("/getAllUser")
     @ResponseBody
     public List<SysUser> getAllUser(HttpServletRequest request) {
-        System.out.println(request.getCookies());
-        System.out.println(request.getSession());
+//        System.out.println(request.getCookies());
+//        System.out.println(request.getSession());
+        System.out.println();
+        System.out.println(request.getUserPrincipal());
         System.out.println(request.getUserPrincipal());
         return sysUserServiceImp.findAll();
 
