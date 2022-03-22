@@ -31,7 +31,7 @@ public class SysUserController {
 //        System.out.println(request.getSession());
         System.out.println();
         System.out.println(request.getUserPrincipal());
-        System.out.println(request.getUserPrincipal());
+        System.out.println(request.getUserPrincipal().getName());
         return sysUserServiceImp.findAll();
 
 
