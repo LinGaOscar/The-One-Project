@@ -2,6 +2,7 @@ package com.oscar.oneap.entity;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.*;
@@ -16,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 @Data
 @Entity
 @Table(name = "sys_user")
-public class SysUser {
+public class SysUser implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")

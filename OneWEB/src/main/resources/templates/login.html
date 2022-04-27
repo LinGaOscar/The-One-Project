@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Login</title>
     <script type="text/javascript" th:src="@{static/js/jquery-3.6.0.min.js}" src="../static/js/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" th:href="@{static/css/bootstrap.min.css}" href="../static/css/bootstrap.min.css"/>
     <link rel="stylesheet" th:href="@{static/css/font-awesome.min.css}" href="../static/css/font-awesome.min.css"/>
@@ -10,6 +10,24 @@
             src="../static/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-
+<div class="container center">
+    <h2>The One Project</h2>
+    <p>Please log in to first</p>
+    <form action="#" method="post" th:action="@{/login}">
+        <div class="form-group">
+            <label for="account">Account</label>
+            <input type="text" class="form-control" id="account" name="account" placeholder="Enter Account">
+            <div class="alert alert-danger" role="alert" th:if="${userError}" th:text="${userError}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password">
+            <div class="alert alert-danger" role="alert" th:if="${passwordError}" th:text="${passwordError}">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
 </body>
 </html>

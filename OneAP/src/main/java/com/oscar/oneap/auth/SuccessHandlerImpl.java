@@ -31,6 +31,7 @@ public class SuccessHandlerImpl implements AuthenticationSuccessHandler {
 		session.setAttribute(LOGGED_IN, account);
 		session.setAttribute(USER_TYPE, authority);
 		Map<String, String> result = new HashMap<>();
+		result.put("message","登入成功");
 		result.put("authority", authority);
 		resp.setContentType("application/json;charset=UTF-8");
 		PrintWriter out = resp.getWriter();
