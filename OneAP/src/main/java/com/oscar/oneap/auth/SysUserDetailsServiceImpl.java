@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import javax.security.auth.login.AccountNotFoundException;
+import javax.servlet.http.HttpServletRequest;
 
 @Service
 public class SysUserDetailsServiceImpl implements UserDetailsService {
@@ -27,19 +28,10 @@ public class SysUserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         SysUser sysUser = sysUserServiceImp.findByUserName(username);
         if (sysUser == null) {
-            new UsernameNotFoundException("Not found :" + username);
+            throw new UsernameNotFoundException("Not found :" + username);
         }
 
         return new SysUserDetails(sysUser);
     }
 
-    public UserDetails loadUserByAccount(String account) throws AccountNotFoundException {
-        SysUser sysUser = sysUserServiceImp.findByAccount(account);
-
-        if (sysUser == null) {
-            new AccountNotFoundException("Not found :" + account);
-        }
-
-        return new SysUserDetails(sysUser);
-    }
 }

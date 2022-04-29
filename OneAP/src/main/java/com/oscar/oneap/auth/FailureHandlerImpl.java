@@ -10,23 +10,27 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class FailureHandlerImpl implements AuthenticationFailureHandler {
 	@Override
-	public void onAuthenticationFailure(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse,
-			AuthenticationException e) throws IOException, ServletException {
-		httpServletResponse.setContentType("application/json;charset=UTF-8");
-		PrintWriter out = httpServletResponse.getWriter();
-		httpServletResponse.setStatus(404);
+	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
 		Map<String, String> result = new HashMap<>();
-		result.put("message","登入失敗");
-		result.put("mes2",httpServletRequest.getInputStream().toString());
+		result.put("statusCode","404");
+		result.put("statusDesc","登入失敗");
+		result.put("resultData",exception.getMessage());
+//		result.put("resultData","帳號密碼錯誤");
+
+		response.setContentType("application/json;charset=UTF-8");
+		PrintWriter out = response.getWriter();
 		ObjectMapper om = new ObjectMapper();
 		out.write(om.writeValueAsString(result));
 		out.flush();
 		out.close();
 	}
+
+
 }

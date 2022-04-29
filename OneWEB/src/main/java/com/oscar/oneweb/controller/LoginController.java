@@ -21,14 +21,11 @@ import java.util.Map;
 public class LoginController {
 
     @PostMapping("/login")
-    public void login(@RequestParam String account,@RequestParam String password, Model model){
-
-        Map result = new HashMap();
-        result.put("account",account);
-        result.put("password",password);
+    public void login(UserBean userBean, Model model) {
+        System.out.println(userBean);
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-        HttpEntity request = new HttpEntity<>(result, headers);
+        HttpEntity request = new HttpEntity<>(userBean, headers);
         RestTemplate restTemplate = new RestTemplate();
         ResponseObject responseObject = restTemplate.postForObject("http://localhost:8080/api/login",request,ResponseObject.class);
         System.out.println(responseObject);

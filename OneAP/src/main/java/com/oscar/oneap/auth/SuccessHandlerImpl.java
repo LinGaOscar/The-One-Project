@@ -19,23 +19,30 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class SuccessHandlerImpl implements AuthenticationSuccessHandler {
 
 	private final String LOGGED_IN = "logged_in";
-	private final String USER_TYPE = "user_type";
+	private final String USER_ROLE = "user_type";
 
 	@Override
-	public void onAuthenticationSuccess(HttpServletRequest req, HttpServletResponse resp, Authentication authentication)
+	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication)
 			throws IOException, ServletException {
-		String account = authentication.getName();
+		String name = authentication.getName();
 		Collection<?> collection = authentication.getAuthorities();
 		String authority = collection.iterator().next().toString();
-		HttpSession session = req.getSession();
-		session.setAttribute(LOGGED_IN, account);
-		session.setAttribute(USER_TYPE, authority);
-		Map<String, String> result = new HashMap<>();
-		result.put("message","登入成功");
-		result.put("authority", authority);
-		resp.setContentType("application/json;charset=UTF-8");
-		PrintWriter out = resp.getWriter();
-		resp.setStatus(200);
+		HttpSession session = request.getSession();
+		session.setAttribute(LOGGED_IN, name);
+		session.setAttribute(USER_ROLE, authority);
+
+		Map<String, Object> resultData = new HashMap<>();
+		resultData.put("name",name);
+		resultData.put("authority",authority);
+
+		Map<String, Object> result = new HashMap<>();
+		result.put("statusCode","200");
+		result.put("statusDesc","登入成功");
+		result.put("resultData",resultData);
+
+		response.setContentType("application/json;charset=UTF-8");
+//		httpServletResponse.setStatus(200);
+		PrintWriter out = response.getWriter();
 		ObjectMapper om = new ObjectMapper();
 		out.write(om.writeValueAsString(result));
 		out.flush();
