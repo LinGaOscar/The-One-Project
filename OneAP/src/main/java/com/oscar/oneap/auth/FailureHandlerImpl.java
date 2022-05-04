@@ -21,8 +21,7 @@ public class FailureHandlerImpl implements AuthenticationFailureHandler {
 		Map<String, String> result = new HashMap<>();
 		result.put("statusCode","404");
 		result.put("statusDesc","登入失敗");
-		result.put("resultData",exception.getMessage());
-//		result.put("resultData","帳號密碼錯誤");
+		result.put("resultData","帳號或密碼錯誤");
 
 		response.setContentType("application/json;charset=UTF-8");
 		PrintWriter out = response.getWriter();
