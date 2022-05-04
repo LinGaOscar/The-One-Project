@@ -7,18 +7,30 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="OneApiAccountManagement" />
         <module name="OneAP" />
         <module name="OneWEB" />
+        <module name="OneApiGateway" />
+        <module name="OneApiUser" />
+        <module name="OneEureka" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="OneAP" target="11" />
+      <module name="OneApiAccountManagement" target="11" />
+      <module name="OneApiGateway" target="11" />
+      <module name="OneApiUser" target="11" />
+      <module name="OneEureka" target="11" />
       <module name="OneWEB" target="11" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="OneAP" options="-parameters" />
+      <module name="OneApiAccountManagement" options="-parameters" />
+      <module name="OneApiGateway" options="-parameters" />
+      <module name="OneApiUser" options="-parameters" />
+      <module name="OneEureka" options="-parameters" />
       <module name="OneWEB" options="-parameters" />
     </option>
   </component>
