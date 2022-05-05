@@ -3,6 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/OneAP/OneAP.iml" filepath="$PROJECT_DIR$/OneAP/OneAP.iml" />
+      <module fileurl="file://$PROJECT_DIR$/OneApiAccountManagement/OneApiAccountManagement.iml" filepath="$PROJECT_DIR$/OneApiAccountManagement/OneApiAccountManagement.iml" />
+      <module fileurl="file://$PROJECT_DIR$/OneApiGateway/OneApiGateway.iml" filepath="$PROJECT_DIR$/OneApiGateway/OneApiGateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/OneApiUsers/OneApiUser.iml" filepath="$PROJECT_DIR$/OneApiUsers/OneApiUser.iml" />
+      <module fileurl="file://$PROJECT_DIR$/OneEureka/OneEureka.iml" filepath="$PROJECT_DIR$/OneEureka/OneEureka.iml" />
       <module fileurl="file://$PROJECT_DIR$/OneWEB/OneWEB.iml" filepath="$PROJECT_DIR$/OneWEB/OneWEB.iml" />
     </modules>
   </component>

@@ -5,6 +5,10 @@
       <list>
         <option value="$PROJECT_DIR$/OneAP/pom.xml" />
         <option value="$PROJECT_DIR$/OneWEB/pom.xml" />
+        <option value="$PROJECT_DIR$/OneEureka/pom.xml" />
+        <option value="$PROJECT_DIR$/OneApiUsers/pom.xml" />
+        <option value="$PROJECT_DIR$/OneApiGateway/pom.xml" />
+        <option value="$PROJECT_DIR$/OneApiAccountManagement/pom.xml" />
       </list>
     </option>
   </component>
