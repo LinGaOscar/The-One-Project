@@ -24,7 +24,7 @@ public class LoginAuthenticationFilter extends UsernamePasswordAuthenticationFil
         try {
             InputStream stream = request.getInputStream();
             Map<String, String> body = mapper.readValue(stream, Map.class);
-//            System.out.println(body);
+            System.out.println(body);
 //            System.out.println(body.get("account"));
             authRequest = new UsernamePasswordAuthenticationToken(
                     body.get("account"), body.get("password")

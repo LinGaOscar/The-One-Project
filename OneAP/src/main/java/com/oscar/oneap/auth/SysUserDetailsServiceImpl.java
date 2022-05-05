@@ -3,6 +3,7 @@ package com.oscar.oneap.auth;
 import com.oscar.oneap.entity.SysUser;
 import com.oscar.oneap.entity.SysUserRoles;
 import com.oscar.oneap.repository.SysUserRepository;
+import com.oscar.oneap.service.SysUserService;
 import com.oscar.oneap.service.SysUserServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,19 +16,14 @@ import javax.servlet.http.HttpServletRequest;
 
 @Service
 public class SysUserDetailsServiceImpl implements UserDetailsService {
-
-    private SysUserServiceImp sysUserServiceImp;
-
-    @Autowired
-    public void autoWired(SysUserServiceImp sysUserServiceImp) {
-        this.sysUserServiceImp = sysUserServiceImp;
-    }
-
+	
+	@Autowired
+    private SysUserService sysUserService;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        SysUser sysUser = sysUserServiceImp.findByUserName(username);
-        if (sysUser == null) {
+        SysUser sysUser = sysUserService.findByUserName(username);
+		if (sysUser == null) {
             throw new UsernameNotFoundException("Not found :" + username);
         }
 
