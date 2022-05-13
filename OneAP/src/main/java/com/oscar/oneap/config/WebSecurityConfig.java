@@ -48,11 +48,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
+		
 		http.exceptionHandling().authenticationEntryPoint(new EntryPointImpl())
 				.accessDeniedHandler(new AccessDeniedHandlerImpl()).and()
 				.addFilterBefore(loginAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
-				.authorizeRequests().antMatchers("/admin/**").hasRole("ADMIN").antMatchers("/user/**")
-				.hasAnyRole("ADMIN", "USER").antMatchers("/").permitAll().and()
+				.authorizeRequests()
+				.antMatchers("/admin/**").hasRole("ADMIN").antMatchers("/user/**").hasAnyRole("ADMIN", "USER")
+				.antMatchers("/").permitAll().and()
 //                .formLogin()
 //                .loginProcessingUrl("/login")
 //                .usernameParameter("account")
@@ -70,6 +72,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 					out.flush();
 					out.close();
 				}).and().csrf().disable();
+		
+	}
+	
+	@Override
+	@Bean
+	public AuthenticationManager authenticationManagerBean() throws Exception {
+		return super.authenticationManagerBean();
 	}
 
 	private LoginAuthenticationFilter loginAuthenticationFilter() throws Exception {

@@ -6,10 +6,13 @@ import com.oscar.oneap.repository.SysUserRepository;
 import com.oscar.oneap.service.SysUserService;
 import com.oscar.oneap.service.SysUserServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 
 import javax.security.auth.login.AccountNotFoundException;
 import javax.servlet.http.HttpServletRequest;
@@ -28,6 +31,7 @@ public class SysUserDetailsServiceImpl implements UserDetailsService {
         }
 
         return new SysUserDetails(sysUser);
+//    	return new User("Oscar","0000",new ArrayList<>());
     }
 
 }

@@ -37,4 +37,6 @@ public class LoginAuthenticationFilter extends UsernamePasswordAuthenticationFil
             return this.getAuthenticationManager().authenticate(authRequest);
         }
     }
+    
+    
 }

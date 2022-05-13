@@ -16,3 +16,8 @@ spring:
     driver-class-name: org.mariadb.jdbc.Driver
   thymeleaf:
     cache: false
+
+    
+token:
+  screct:"aasddd"
+  expiration_time=86400000 // a day

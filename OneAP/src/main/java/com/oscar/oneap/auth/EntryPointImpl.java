@@ -16,20 +16,22 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class EntryPointImpl implements AuthenticationEntryPoint {
 
-    @Override
-    public void commence(HttpServletRequest request, HttpServletResponse response,
-                         AuthenticationException e) throws IOException, ServletException {
-        ObjectMapper mapper = new ObjectMapper();
-        Map<String, String> result = new HashMap<>();
-        result.put("error", "請先登入才能進行此操作");
+	@Override
+	public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException e)
+			throws IOException, ServletException {
+		ObjectMapper mapper = new ObjectMapper();
+		Map<String, String> result = new HashMap<>();
+		result.put("statusCode", "401");
+		result.put("statusDesc", "登入失敗");
+		result.put("resultData", "請先登入才能進行此操作");
 
-        response.setContentType("application/json;charset=UTF-8");
-        response.setCharacterEncoding("UTF-8");
-        response.setStatus(response.SC_UNAUTHORIZED);
+		response.setContentType("application/json;charset=UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 
-        PrintWriter out = response.getWriter();
-        out.write(mapper.writeValueAsString(result));
-        out.flush();
-        out.close();
-    }
+		PrintWriter out = response.getWriter();
+		out.write(mapper.writeValueAsString(result));
+		out.flush();
+		out.close();
+	}
 }

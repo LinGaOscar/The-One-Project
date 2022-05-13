@@ -12,6 +12,10 @@ import java.util.stream.Collectors;
 
 public class SysUserDetails implements UserDetails {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5927749153774824036L;
 	private String userName;
 	private String password;
 	private String account;
