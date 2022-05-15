@@ -9,23 +9,26 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @Data
 @Entity
 @Table(name = "sys_user_roles")
-public class UsersRoles {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
+public class UsersRoles implements Serializable {
+	private static final long serialVersionUID = 5471013861821497868L;
 
-    @Column(name = "rank")
-    private String rank;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
+	private Long id;
 
-    @Column(name = "functions")
-    private String functions;
+	@Column(name = "rank")
+	private String rank;
 
-    @Column(name = "roles")
-    private String roles;
+	@Column(name = "functions")
+	private String functions;
+
+	@Column(name = "roles")
+	private String roles;
 }

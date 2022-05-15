@@ -17,6 +17,8 @@ import lombok.Data;
 @Entity
 @Table(name = "one_users")
 public class UsersEntity implements Serializable {
+	private static final long serialVersionUID = 6519033879177884069L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
@@ -34,13 +36,14 @@ public class UsersEntity implements Serializable {
 	@Column(name = "encrpte_password", nullable = false)
 	private String encrptedPassword;
 
-	@Column(name = "acconut", unique = true)
-	private String acconut;
+	@Column(name = "account", unique = true)
+	private String account;
 
 	@Column(name = "active")
-	private Boolean active = true;
+	private Boolean active;
 
 	@ManyToOne
 	@OrderBy("id")
 	UsersRoles UsersRoles;
+
 }

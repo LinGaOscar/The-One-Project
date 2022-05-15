@@ -11,5 +11,5 @@ public class CreateUserResponseModel {
 	private String userName;
 	private String userId;
 	private String email;
-
+	private String account;
 }
