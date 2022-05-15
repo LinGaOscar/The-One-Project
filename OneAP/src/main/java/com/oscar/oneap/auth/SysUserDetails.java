@@ -18,15 +18,14 @@ public class SysUserDetails implements UserDetails {
 	private static final long serialVersionUID = 5927749153774824036L;
 	private String userName;
 	private String password;
-	private String account;
 	private boolean active;
 	private List<GrantedAuthority> authorities;
 
 	public SysUserDetails(SysUser sysUser) {
-		this.userName = sysUser.getUserName();
+		//利用account 認證
+		this.userName = sysUser.getAccount();
 		this.password = sysUser.getPassword();
 		this.active = sysUser.isActive();
-		this.account = sysUser.getAccount();
 		this.authorities = Arrays.stream(sysUser.getSysUserRoles().getRoles().split(","))
 				.map(SimpleGrantedAuthority::new).collect(Collectors.toList());
 //        System.out.println(authorities);

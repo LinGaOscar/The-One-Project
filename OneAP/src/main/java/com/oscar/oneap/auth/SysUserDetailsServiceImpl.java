@@ -25,7 +25,7 @@ public class SysUserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        SysUser sysUser = sysUserService.findByUserName(username);
+        SysUser sysUser = sysUserService.findByAccount(username);
 		if (sysUser == null) {
             throw new UsernameNotFoundException("Not found :" + username);
         }

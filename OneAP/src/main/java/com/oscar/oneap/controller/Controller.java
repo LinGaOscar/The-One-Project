@@ -33,12 +33,6 @@ public class Controller {
 	@Autowired
 	private JwtUtil jwtTokenUtil;
 
-	@GetMapping("/")
-	public Map<String, String> SayHello() {
-		Map<String, String> result = Map.of("message", "say hello");
-		return result;
-	}
-	
 	@GetMapping("/user/hello")
 	public Map<String, String> userSayHello(HttpServletRequest request) {
 		HttpSession session = request.getSession();
